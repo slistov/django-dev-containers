@@ -20,7 +20,9 @@
 	"customizations": {
 		"vscode": {
 			"extensions": [
-				"charliermarsh.ruff"
+				"charliermarsh.ruff",
+				"Cameron.vscode-pytest",
+				"ms-python.vscode-pylance"
 			]
 		}
 	}
