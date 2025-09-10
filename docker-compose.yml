@@ -1,5 +1,6 @@
 services:
   django:
+    container_name: django_app
     build:
       context: .
       dockerfile: ./Dockerfile
@@ -14,6 +15,7 @@ services:
     depends_on:
       - postgres
   postgres:
+    container_name: postgres
     image: postgres:14.19-alpine
     user: postgres
     ports:
@@ -27,22 +29,22 @@ services:
     restart: unless-stopped
   redis:
     image: redis:7.0.15
-    container_name: redis_container
+    container_name: redis
     environment:
       - REDIS_DATABASES=1
     ports:
       - 6379:6379
     volumes:
-      - redisdata:/data
+      - redis-data:/data
   redisinsight:
     image: redislabs/redisinsight:latest
     container_name: redisinsight
     ports:
       - 5540:5540
     volumes:
-      - redisinsight_data:/data
+      - redisinsight-data:/data
 
 volumes:
   postgres-data:
-  redisdata:
-  redisinsight_data:
+  redis-data:
+  redisinsight-data:
