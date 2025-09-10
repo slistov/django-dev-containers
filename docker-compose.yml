@@ -9,9 +9,7 @@ services:
       - 8000:8000
     volumes:
       - .:/app:cached
-    environment:
-      PYTHONWARNINGS: default
-      PYTHONBREAKPOINT: ipdb.set_trace
+      - vscode-extensions:/root/.vscode-server/extensions
     depends_on:
       - postgres
   postgres:
@@ -45,6 +43,7 @@ services:
       - redisinsight-data:/data
 
 volumes:
+  vscode-extensions:
   postgres-data:
   redis-data:
   redisinsight-data:
