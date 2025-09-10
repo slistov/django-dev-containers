@@ -26,6 +26,18 @@ services:
       # with named volume we will persist database state E.g after restarting docker/machine
       - postgres-data:/var/lib/postgresql/data
     restart: unless-stopped
+  redis:
+    image: redis:7.0.15
+    container_name: redis_container
+    environment:
+      - REDIS_DATABASES=1
+    ports:
+      - 6379:6379
+    volumes:
+      - redisdata:/data
+
+
 
 volumes:
   postgres-data:
+  redisdata:
