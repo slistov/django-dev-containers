@@ -14,7 +14,7 @@ services:
       - postgres
   postgres:
     container_name: postgres
-    image: postgres:14.19-alpine
+    image: postgres:16.6-alpine
     user: postgres
     ports:
       - 5432:5432
@@ -41,9 +41,20 @@ services:
       - 5540:5540
     volumes:
       - redisinsight-data:/data
-
+  rabbit-mq:
+    image: rabbitmq:4.1.4-management
+    container_name: rabbit-mq
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+    ports:
+      - 8080:15672
+    volumes:
+      - rabbitmq-data:/var/lib/rabbitmq
+    
 volumes:
   vscode-extensions:
   postgres-data:
   redis-data:
   redisinsight-data:
+  rabbitmq-data:
